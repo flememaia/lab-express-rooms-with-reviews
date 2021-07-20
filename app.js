@@ -9,10 +9,12 @@ const express = require("express");
 
 const connectToDb = require("./config/db.config");
 const userRouter = require("./routes/user.routes");
+const roomRouter = require("./routes/user.routes");
 
 const app = express();
 
 app.use(express.json());
+app.room(express.json());
 
 async function init() {
   try {
@@ -23,6 +25,14 @@ async function init() {
     app.use("/", userRouter);
 
     app.use((err, req, res) => {
+      if (err) {
+        return res.status(500).json({ error: err });
+      }
+    });
+
+    app.room("/room", roomRouter);
+
+    app.room((err, req, res) => {
       if (err) {
         return res.status(500).json({ error: err });
       }
