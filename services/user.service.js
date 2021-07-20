@@ -1,8 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-//######################AINDA NÃO CRIEI O MODEL AINDA
-// const UserModel = require("../models/User.model");
+const UserModel = require("../models/User.model");
 
 class UserService {
   constructor(user) {
@@ -50,7 +49,6 @@ class UserService {
     return hashedPassword;
   }
 
-// AINDA NÃO CRIEI O USER MODEL
   async createUser() {
     // 4. Insere o usuário no banco
     return UserModel.create({
